@@ -3,264 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delicious Bites Restaurant</title>
+<title>Speed Racer</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#fafafa;
-    color:#333;
+background:#222;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
 }
 
-header{
-    background:#111;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
+#game{
+position:relative;
+width:400px;
+height:700px;
+background:#555;
+overflow:hidden;
+border:5px solid white;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#ffb703;
+.road-line{
+position:absolute;
+width:10px;
+height:80px;
+background:white;
+left:195px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    transition:.3s;
+.car{
+position:absolute;
+width:60px;
+height:110px;
+background:red;
+border-radius:10px;
+bottom:20px;
+left:170px;
 }
 
-nav a:hover{
-    color:#ffb703;
+.enemy{
+position:absolute;
+width:60px;
+height:110px;
+background:yellow;
+border-radius:10px;
 }
 
-.hero{
-    height:90vh;
-    background:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600") center/cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+#score{
+position:absolute;
+top:10px;
+left:10px;
+color:white;
+font-size:24px;
+font-weight:bold;
+z-index:10;
 }
 
-.hero-content{
-    background:rgba(0,0,0,.6);
-    color:white;
-    padding:40px;
-    border-radius:10px;
-}
-
-.hero h1{
-    font-size:55px;
-}
-
-.hero p{
-    margin:20px 0;
-    font-size:20px;
-}
-
-.btn{
-    display:inline-block;
-    padding:12px 30px;
-    background:#ffb703;
-    color:#111;
-    text-decoration:none;
-    border-radius:5px;
-    font-weight:bold;
-}
-
-section{
-    padding:70px 10%;
-}
-
-h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:36px;
-}
-
-.menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-.card{
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-}
-
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-.card-content{
-    padding:20px;
-}
-
-.price{
-    color:#d62828;
-    font-weight:bold;
-    font-size:20px;
-    margin-top:10px;
-}
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-
-.about img{
-    width:100%;
-    border-radius:10px;
-}
-
-.contact{
-    text-align:center;
-    background:#111;
-    color:white;
-}
-
-.contact p{
-    margin:10px 0;
-}
-
-footer{
-    background:#000;
-    color:white;
-    text-align:center;
-    padding:15px;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:40px;
-}
-
-.about{
-grid-template-columns:1fr;
-}
-
-header{
-flex-direction:column;
-}
-
-nav{
-margin-top:15px;
-}
+#start{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:15px 30px;
+font-size:24px;
+cursor:pointer;
+z-index:20;
 }
 </style>
 
 </head>
 <body>
 
-<header>
-<div class="logo">Delicious Bites</div>
+<div id="game">
 
-<nav>
-<a href="#">Home</a>
-<a href="#menu">Menu</a>
-<a href="#about">About</a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfhtA39xrhPQuvIDI0agTC_JBeS5gNDcHrgIhZ3KJzC7d2Y-g/viewform?usp=publish-editor">Contact</a>
-</nav>
-</header>
+<div id="score">Score: 0</div>
 
-<section class="hero">
-<div class="hero-content">
-<h1>Welcome to Delicious Bites</h1>
-<p>Fresh Ingredients • Great Taste • Cozy Atmosphere</p>
-<a href="#menu" class="btn">View Menu</a>
-</div>
-</section>
+<button id="start">Start Game</button>
 
-<section id="menu">
-<h2>Our Popular Dishes</h2>
-
-<div class="menu">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800">
-<div class="card-content">
-<h3>Italian Pizza</h3>
-<p>Wood-fired pizza with fresh mozzarella and basil.</p>
-<div class="price">$12.99</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800">
-<div class="card-content">
-<h3>Classic Burger</h3>
-<p>Juicy beef burger served with crispy fries.</p>
-<div class="price">$9.99</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800">
-<div class="card-content">
-<h3>Healthy Salad</h3>
-<p>Fresh vegetables with homemade dressing.</p>
-<div class="price">$7.99</div>
-</div>
-</div>
+<div class="car" id="player"></div>
 
 </div>
-</section>
 
-<section id="about">
-<h2>About Us</h2>
+<script>
 
-<div class="about">
-<div>
-<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1000">
-</div>
+const game=document.getElementById("game");
+const player=document.getElementById("player");
+const scoreBoard=document.getElementById("score");
+const startBtn=document.getElementById("start");
 
-<div>
-<h3>Experience Great Dining</h3>
-<br>
-<p>
-At Delicious Bites, we combine fresh ingredients with expert cooking
-to create unforgettable meals. Whether you're visiting with family,
-friends, or colleagues, we promise exceptional food and warm hospitality.
-</p>
-</div>
+let keys={};
+let enemies=[];
+let score=0;
+let speed=5;
+let playing=false;
 
-</div>
-</section>
+document.addEventListener("keydown",(e)=>{
+keys[e.key]=true;
+});
 
-<section class="contact" id="contact">
-<h2>Contact Us</h2>
-<p>📍 123 Food Street, Your City</p>
-<p>📞 +1 234 567 890</p>
-<p>📧 info@deliciousbites.com</p>
-</section>
+document.addEventListener("keyup",(e)=>{
+keys[e.key]=false;
+});
 
-<footer>
-<p>© 2026 Delicious Bites Restaurant. All Rights Reserved.</p>
-</footer>
+function createLines(){
+
+for(let i=0;i<10;i++){
+
+let line=document.createElement("div");
+line.className="road-line";
+line.style.top=(i*90)+"px";
+game.appendChild(line);
+
+}
+
+}
+
+createLines();
+
+function moveLines(){
+
+document.querySelectorAll(".road-line").forEach(line=>{
+
+let top=parseInt(line.style.top);
+
+top+=speed;
+
+if(top>700) top=-80;
+
+line.style.top=top+"px";
+
+});
+
+}
+
+function createEnemy(){
+
+let enemy=document.createElement("div");
+
+enemy.className="enemy";
+
+enemy.style.left=(Math.floor(Math.random()*3)*110+30)+"px";
+
+enemy.style.top="-120px";
+
+game.appendChild(enemy);
+
+enemies.push(enemy);
+
+}
+
+function moveEnemies(){
+
+enemies.forEach((enemy,index)=>{
+
+let top=parseInt(enemy.style.top);
+
+top+=speed;
+
+enemy.style.top=top+"px";
+
+if(checkCollision(player,enemy)){
+playing=false;
+startBtn.innerHTML="Game Over<br>Restart";
+startBtn.style.display="block";
+}
+
+if(top>700){
+
+enemy.remove();
+enemies.splice(index,1);
+
+score++;
+scoreBoard.innerHTML="Score: "+score;
+
+if(score%10==0) speed++;
+
+}
+
+});
+
+if(Math.random()<0.03){
+createEnemy();
+}
+
+}
+
+function checkCollision(a,b){
+
+let ar=a.getBoundingClientRect();
+
+let br=b.getBoundingClientRect();
+
+return !(
+ar.bottom<br.top||
+ar.top>br.bottom||
+ar.right<br.left||
+ar.left>br.right
+);
+
+}
+
+function movePlayer(){
+
+let left=player.offsetLeft;
+
+if(keys["ArrowLeft"]&&left>20)
+left-=7;
+
+if(keys["ArrowRight"]&&left<320)
+left+=7;
+
+player.style.left=left+"px";
+
+}
+
+function gameLoop(){
+
+if(!playing) return;
+
+moveLines();
+movePlayer();
+moveEnemies();
+
+requestAnimationFrame(gameLoop);
+
+}
+
+startBtn.onclick=function(){
+
+document.querySelectorAll(".enemy").forEach(e=>e.remove());
+
+enemies=[];
+
+score=0;
+speed=5;
+
+scoreBoard.innerHTML="Score: 0";
+
+player.style.left="170px";
+
+playing=true;
+
+startBtn.style.display="none";
+
+gameLoop();
+
+}
+
+</script>
 
 </body>
 </html>
